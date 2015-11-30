@@ -20,6 +20,7 @@ module.exports = React.createClass({
     },
 
     propTypes: process.env.NODE_ENV === 'production' ? {} : {
+        uniqueId: React.PropTypes.string,
         inputId: React.PropTypes.string,
         inputName: React.PropTypes.string,
         className: React.PropTypes.string,
@@ -86,7 +87,9 @@ module.exports = React.createClass({
 
     componentWillMount: function() {
         var _this = this,
-            uniqueId = this.constructor.getInstanceCount();
+            uniqueId = this.props.uniqueId
+                ? this.props.uniqueId
+                : this.constructor.getInstanceCount();
 
         _this.userInputValue = null;
         _this.previousInputValue = null;
